@@ -1,0 +1,108 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+}
+
+.droparea{
+  width:90%;
+  margin: 15px auto;
+  padding: 20px 10px;
+  border-radius: 5px;
+  background: rgba(236, 240, 241,0.7);
+  transition: background ease .1s;
+}
+
+.droparea:hover{
+  background: rgba(236, 240, 241,1);
+}
+
+.droparea p{
+  font-weight: lighter;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.activearea{
+  background: rgba(46, 204, 113,0.2);
+}
+
+.rejectedarea{
+  background: rgba(231, 76, 60,0.2)
+}
+
+.activearea p, .rejectedarea p {
+  color: rgba(236, 240, 241,1.0);
+}
+
+.image-container{
+  width: 80%;
+  margin: 10px auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.image-container img{
+  max-width: 100%;
+  max-height: 400px;
+}
+
+.notification{
+  background: #333;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  overflow: hidden;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.notification p {
+  padding: 10px;
+  color: #eee;
+  font-weight: 100;
+}
+
+input[type=range]{
+  -webkit-appearance: none;
+  display: block;
+  padding: 5px;
+  width: 220px;
+  margin: 5px auto;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 4px;
+  background: #ecf0f1;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #bdc3c7;
+  margin-top: -3px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+label{
+  margin: 4px;
+}
+
+fieldset{
+  width: 20%;
+  padding: 15px 45px;
+  margin: 5px auto;
+}
