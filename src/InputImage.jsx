@@ -1,8 +1,10 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import AvatarEditor from 'react-avatar-editor';
 
 import './style.css';
+import Notification from './Notification';
+import ImageSettings from './ImageSettings';
+import ImagePreview from './ImagePreview';
 
 class InputImage extends React.Component {
   constructor() {
@@ -10,14 +12,9 @@ class InputImage extends React.Component {
     this.state = {
       accepted: [],
       error: false,
-      message: '',
-      height: 100,
-      width: 100,
-      borderRadius: 0,
-      scale: 1,
-      rotate: 0
+      message: ''
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handlePreview = this.handlePreview.bind(this);
   }
 
   handleDrop(acceptedFiles) {
@@ -34,10 +31,8 @@ class InputImage extends React.Component {
     }
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: parseInt(event.target.value, 10)
-    });
+  handlePreview(data){
+    return <ImagePreview show={this.state.accepted.length} image={this.state.accepted[0].preview} dimensions={data} /> ;
   }
 
   render() {
@@ -55,69 +50,14 @@ class InputImage extends React.Component {
         >
           <p>Drop Your Files Here</p>
         </Dropzone>
-        {this.state.error ? (
-          <div className="notification">
-            <p>{this.state.message}</p>
-          </div>
-        ) : null}
-        <fieldset>
-          <legend>Image Settings</legend>
-          <label htmlFor="width">Width</label>
-          <input
-            type="range"
-            min={100}
-            max={800}
-            step={100}
-            name="width"
-            value={this.state.width}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="width">Height</label>
-          <input
-            type="range"
-            min={10}
-            max={100}
-            step={10}
-            name="height"
-            value={this.state.height}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="width">Border Radius</label>
-          <input
-            type="range"
-            max={50}
-            step={10}
-            name="borderRadius"
-            value={this.state.borderRadius}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="width">Zoom</label>
-          <input
-            type="range"
-            step={0.1}
-            min={1}
-            name="scale"
-            value={this.state.scale}
-            onChange={this.handleChange}
-          />
-        </fieldset>
-        <div className="image-container">
-          {this.state.accepted.length
-            ? this.state.accepted.map((data, index) => (
-                <AvatarEditor
-                  key={index}
-                  image={data.preview}
-                  width={this.state.width}
-                  height={this.state.height}
-                  border={50}
-                  borderRadius={this.state.borderRadius}
-                  color={[255, 255, 255, 0.6]} // RGBA
-                  scale={this.state.scale}
-                  rotate={0}
-                />
-              ))
-            : null}
-        </div>
+        <Notification message={this.state.message} show={this.state.error} />
+        {
+          this.state.accepted.length ? (
+            <ImageSettings handlePreview={this.handlePreview} />
+          ):(
+            null
+          )
+        }
       </React.Fragment>
     );
   }
