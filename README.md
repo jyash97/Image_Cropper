@@ -14,3 +14,6 @@ React Application to crop Image using React-DropZone and React-Avatar-Editor.
 
 * **handleEditorPreview** : It is called from `ImageSettings` to display the Editor.
 * **handleSavedImage** : It is called from `EditorPreview` to save the _URL_ of the Cropped Image.
+
+### Demo
+[Live Preview](https://react-image-cropper.netlify.com/)
