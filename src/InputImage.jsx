@@ -4,7 +4,8 @@ import Dropzone from 'react-dropzone';
 import './style.css';
 import Notification from './Notification';
 import ImageSettings from './ImageSettings';
-import ImagePreview from './ImagePreview';
+import EditorPreview from './EditorPreview';
+import CroppedPreview from './CroppedPreview';
 
 class InputImage extends React.Component {
   constructor() {
@@ -12,9 +13,11 @@ class InputImage extends React.Component {
     this.state = {
       accepted: [],
       error: false,
-      message: ''
+      message: '',
+      print:false
     };
-    this.handlePreview = this.handlePreview.bind(this);
+    this.handleEditorPreview = this.handleEditorPreview.bind(this);
+    this.handleSavedImage = this.handleSavedImage.bind(this);
   }
 
   handleDrop(acceptedFiles) {
@@ -31,8 +34,15 @@ class InputImage extends React.Component {
     }
   }
 
-  handlePreview(data){
-    return <ImagePreview show={this.state.accepted.length} image={this.state.accepted[0].preview} dimensions={data} /> ;
+  handleEditorPreview(data){
+    return <EditorPreview show={this.state.accepted.length} handleSavedImage={this.handleSavedImage} image={this.state.accepted[0].preview} dimensions={data} /> ;
+  }
+
+  handleSavedImage(url){
+    this.setState({
+      url,
+      print:true
+    });
   }
 
   render() {
@@ -53,7 +63,14 @@ class InputImage extends React.Component {
         <Notification message={this.state.message} show={this.state.error} />
         {
           this.state.accepted.length ? (
-            <ImageSettings handlePreview={this.handlePreview} />
+            <ImageSettings handleEditorPreview={this.handleEditorPreview} />
+          ):(
+            null
+          )
+        }
+        {
+          this.state.print ? (
+            <CroppedPreview imageUrl={this.state.url} />
           ):(
             null
           )

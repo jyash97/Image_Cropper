@@ -8,8 +8,7 @@ class ImageSettings extends React.Component{
     super();
     this.state = {
       height: 100,
-      width: 100,
-      borderRadius: 0,
+      width: 800,
       scale: 1
     };
     this.handleChange = this.handleChange.bind(this);
@@ -28,11 +27,10 @@ class ImageSettings extends React.Component{
           <legend>Image Settings</legend>
           <RangeInput name='width' min={100} max={800} step={100} currentvalue={this.state.width} handleChange={this.handleChange} />
           <RangeInput name='height' min={10} max={100} step={10} currentvalue={this.state.height} handleChange={this.handleChange} />
-          <RangeInput name='borderRadius' min={0} max={50} step={5} currentvalue={this.state.borderRadius} handleChange={this.handleChange} />
           <RangeInput name='scale' min={1} max={5} step={.5} currentvalue={this.state.scale} handleChange={this.handleChange} />
         </fieldset>
         {
-          this.props.handlePreview(this.state)
+          this.props.handleEditorPreview(this.state)
         }
       </React.Fragment>
     );

@@ -45,6 +45,8 @@
 .image-container img{
   max-width: 100%;
   max-height: 400px;
+  display: block;
+  margin: 5px auto;
 }
 
 .notification{
@@ -106,4 +108,20 @@ fieldset{
   width: 20%;
   padding: 15px 45px;
   margin: 5px auto;
+}
+
+h4{
+  font-size: 20px;
+  font-weight: 200;
+  padding: 2px;
+  text-transform: uppercase;
+}
+
+button{
+  background: #3498db;
+  padding: 8px;
+  color: white;
+  margin: 5px auto;
+  width: 100%;
+  border: 0;
 }
