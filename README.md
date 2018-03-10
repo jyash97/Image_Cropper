@@ -17,3 +17,5 @@ React Application to crop Image using React-DropZone and React-Avatar-Editor.
 
 ### Demo
 [Live Preview](https://react-image-cropper.netlify.com/)
+
+**This repository is created to implement a Task given to me.**
