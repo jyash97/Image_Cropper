@@ -2,33 +2,35 @@ import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
 
 class EditorPreview extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      image:false
+    this.state = {
+      image: false
     };
     this.onClickSave = this.onClickSave.bind(this);
     this.setEditorRef = this.setEditorRef.bind(this);
   }
 
-  async onClickSave(){
+  async onClickSave() {
     if (this.editor) {
       const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL();
       let imageURL;
       await fetch(canvasScaled)
         .then(res => res.blob())
-        .then(blob => imageURL = window.URL.createObjectURL(blob));
+        .then(blob => (imageURL = window.URL.createObjectURL(blob)));
 
       this.setState({
-        url:imageURL
+        url: imageURL
       });
-      this.props.handleSavedImage(imageURL);
+      this.props.handleSavedImage(Promise.resolve(imageURL));
     }
   }
 
-  setEditorRef(editor){this.editor = editor;}
+  setEditorRef(editor) {
+    this.editor = editor;
+  }
 
-  render () {
+  render() {
     return (
       <div className="image-container">
         <h4>Image Editor</h4>

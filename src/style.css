@@ -122,6 +122,23 @@ button{
   padding: 8px;
   color: white;
   margin: 5px auto;
-  width: 100%;
+  width: 80%;
+  cursor: pointer;
+  display: block;
   border: 0;
+}
+
+.resetButton,.proceedButton{
+  padding: 10px;
+  background-color: tomato;
+  text-transform: uppercase;
+}
+
+.proceedButton{
+  background-color: #2ecc71;
+}
+
+.disable{
+  background-color: rgba(52, 152, 219,0.5);
+  cursor: no-drop;
 }

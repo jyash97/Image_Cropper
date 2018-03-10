@@ -14,7 +14,8 @@ class InputImage extends React.Component {
       accepted: [],
       error: false,
       message: '',
-      print:false
+      print: false,
+      url: ''
     };
     this.handleEditorPreview = this.handleEditorPreview.bind(this);
     this.handleSavedImage = this.handleSavedImage.bind(this);
@@ -34,15 +35,24 @@ class InputImage extends React.Component {
     }
   }
 
-  handleEditorPreview(data){
-    return <EditorPreview show={this.state.accepted.length} handleSavedImage={this.handleSavedImage} image={this.state.accepted[0].preview} dimensions={data} /> ;
+  handleEditorPreview(data) {
+    return (
+      <EditorPreview
+        show={this.state.accepted.length}
+        handleSavedImage={this.handleSavedImage}
+        image={this.state.accepted[0].preview}
+        dimensions={data}
+      />
+    );
   }
 
-  handleSavedImage(url){
-    this.setState({
-      url,
-      print:true
-    });
+  handleSavedImage(promiseValue) {
+    promiseValue.then(data =>
+      this.setState({
+        url: data,
+        print: true
+      })
+    );
   }
 
   render() {
@@ -60,21 +70,36 @@ class InputImage extends React.Component {
         >
           <p>Drop Your Files Here</p>
         </Dropzone>
+
+        <button
+          className="resetButton"
+          onClick={() => {
+            this.setState({ accepted: [], error: false, print: false });
+          }}
+        >
+          Reset Input
+        </button>
+
         <Notification message={this.state.message} show={this.state.error} />
-        {
-          this.state.accepted.length ? (
-            <ImageSettings handleEditorPreview={this.handleEditorPreview} />
-          ):(
-            null
-          )
-        }
-        {
-          this.state.print ? (
-            <CroppedPreview imageUrl={this.state.url} />
-          ):(
-            null
-          )
-        }
+
+        {this.state.accepted.length ? (
+          <ImageSettings handleEditorPreview={this.handleEditorPreview} />
+        ) : (
+          <button
+            className="proceedButton"
+            onClick={() =>
+              this.setState({
+                error: true,
+                message:
+                  'You have not uploaded any Image but Proceeding to Next Step'
+              })
+            }
+          >
+            Proceed Without Saving the Image
+          </button>
+        )}
+
+        <CroppedPreview imageUrl={this.state.url} cropped={this.state.print} />
       </React.Fragment>
     );
   }
