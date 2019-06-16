@@ -47,6 +47,36 @@ const App = () => {
 		setCroppedImage(null);
 	};
 
+	const printImage = () => {
+		const newWindowInstance = window.open();
+		newWindowInstance.document.write(`
+            <html>
+                <head>
+                    <title>Cropped Image Print</title>
+                    <style>
+                        img {
+                            max-width: 800px;
+                            max-height: 100px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img id="cropped" src=${croppedImage} alt="Cropped Image">
+                    <script>
+                        (function(){
+                            var imgElement = document.getElementById('cropped');
+
+                            imgElement.onload = function() {
+                                window.print();
+                                window.close();
+                            };
+                        })();
+                    </script>
+                </body>
+            </html>
+        `);
+	};
+
 	return (
 		<React.Fragment>
 			<div className="header">
@@ -84,6 +114,9 @@ const App = () => {
 						onClick={saveCroppedImage}
 					>
 						{saving ? 'Saving Image' : 'Save Cropped Image'}
+					</button>
+					<button type="button" className="print-button" onClick={printImage}>
+						Print Image
 					</button>
 					<button type="button" onClick={resetImage} className="reset-button">
 						Reset Input

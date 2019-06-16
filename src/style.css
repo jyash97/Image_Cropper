@@ -25,7 +25,8 @@ label .upload-button {
 
 label,
 .save-button,
-.reset-button {
+.reset-button,
+.print-button {
 	padding: 10px 20px;
 	margin: 20px auto;
 	color: #262626;
@@ -61,6 +62,11 @@ button {
 .reset-button {
 	background: #f5222d;
 	color: white;
+}
+
+.print-button {
+	color: white;
+	background: #52c41a;
 }
 
 .action-buttons {
