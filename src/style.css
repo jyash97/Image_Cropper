@@ -5,8 +5,6 @@ body {
 }
 
 .header {
-	background: #282c34;
-	height: 200px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,4 +17,54 @@ body {
 
 .header a {
 	color: #61dafb;
+}
+
+label .upload-button {
+	display: none;
+}
+
+label,
+.save-button,
+.reset-button {
+	padding: 10px 20px;
+	margin: 20px auto;
+	color: #262626;
+	border-radius: 4px;
+	background: #e8e8e8;
+	box-shadow: 0 1px 1px rgba(26, 26, 26, 0.2);
+	transition: all ease 0.2s;
+	cursor: pointer;
+}
+
+label:hover {
+	background: #d9d9d9;
+	box-shadow: 0px 2px 2px rgba(26, 26, 26, 0.2);
+}
+
+.cropper-container {
+	width: 60%;
+	margin: 20px auto;
+}
+
+button {
+	outline: 0;
+	border: 0;
+	font-size: 16px;
+	color: white;
+}
+
+.save-button {
+	color: white;
+	background: #40a9ff;
+}
+
+.reset-button {
+	background: #f5222d;
+	color: white;
+}
+
+.action-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
